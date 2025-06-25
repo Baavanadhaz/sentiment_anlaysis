@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sentiment Predictor</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+    h2 { color: #333; }
+    select, input, button { width: 100%; margin-top: 10px; padding: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>E-commerce Sentiment Predictor</h2>
+    <label>Category:</label>
+    <select id="category">
+      <option>Books</option>
+      <option>Clothing</option>
+      <option>Electronics</option>
+      <option>Home & Kitchen</option>
+      <option>Toys</option>
+    </select>
+    <label>Payment Method:</label>
+    <select id="payment">
+      <option>Credit Card</option>
+      <option>Debit Card</option>
+      <option>Gift Card</option>
+      <option>PayPal</option>
+    </select>
+    <label>Quantity:</label>
+    <input type="number" id="quantity" value="1" min="1">
+    <label>Price (USD):</label>
+    <input type="number" id="price" value="100" min="1">
+    <button onclick="predict()">Predict Sentiment</button>
+    <p id="result" style="font-weight: bold;"></p>
+  </div>
+
+  <script>
+    async function predict() {
+      const response = await fetch("/predict", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          category: document.getElementById("category").value,
+          payment: document.getElementById("payment").value,
+          quantity: document.getElementById("quantity").value,
+          price: document.getElementById("price").value
+        })
+      });
+
+      const result = await response.json();
+      document.getElementById("result").innerText = "Predicted Sentiment: " + result.sentiment;
+    }
+  </script>
+</body>
+</html> 
+
