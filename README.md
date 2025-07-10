@@ -84,7 +84,7 @@ Category: Clothing
 
 Payment: PayPal
 
-Quantity: 2
+Quantity: 4
 
 Price: 400
 
@@ -101,5 +101,5 @@ Add data visualizations for admin view
 
 👤 Author
 Baavana M
-Final Year IT Student | Passionate about AI, Automation, and Web Apps ❤
+Final Year IT Student | Passionate about AI, Automation, and Web Apps 
 
